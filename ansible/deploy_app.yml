@@ -1,0 +1,12 @@
+- name: Deploy Yii2 App Stack
+  hosts: all
+  become: yes
+  tasks:
+    - name: Copy docker-compose.yml
+      copy:
+        src: ../docker/docker-compose.yml
+        dest: /home/ubuntu/docker-compose.yml
+
+    - name: Deploy stack
+      shell: docker stack deploy -c /home/ubuntu/docker-compose.yml yii2app
+
